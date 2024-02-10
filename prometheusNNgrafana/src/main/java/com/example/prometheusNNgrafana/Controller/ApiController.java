@@ -2,13 +2,17 @@ package com.example.prometheusNNgrafana.Controller;
 
 import java.io.IOException;
 
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
+import io.prometheus.client.exporter.MetricsServlet;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -73,6 +77,11 @@ public class ApiController {
 		if (Math.random() > 0.9) {
 			throw new IOException("Random error with " + path + "!");
 		}
+	}
+	
+	@Bean
+	public ServletRegistrationBean registerPrometheusExporterServlet(CollectorRegistry metricRegistry){
+		return new ServletRegistrationBean(new MetricsServlet(metricRegistry), "/metrics");
 	}
 
 }

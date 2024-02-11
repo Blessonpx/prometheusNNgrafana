@@ -7,12 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter;
 import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
-import io.prometheus.client.exporter.MetricsServlet;
+import io.prometheus.metrics.exporter.servlet.jakarta.PrometheusMetricsServlet;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -80,8 +79,8 @@ public class ApiController {
 	}
 	
 	@Bean
-	public ServletRegistrationBean registerPrometheusExporterServlet(CollectorRegistry metricRegistry){
-		return new ServletRegistrationBean(new MetricsServlet(metricRegistry), "/metrics");
-	}
+    public ServletRegistrationBean<PrometheusMetricsServlet> createPrometheusMetricsEndpoint() {
+        return new ServletRegistrationBean<>(new PrometheusMetricsServlet(), "/metrics/*");
+    }
 
 }

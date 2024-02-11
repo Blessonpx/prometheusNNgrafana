@@ -9,7 +9,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		DefaultExports.initialize();
 		return application.sources(PrometheusNNgrafanaApplication.class);
 	}
 

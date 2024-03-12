@@ -57,11 +57,13 @@ public class ApiController {
 			try {
 				Thread.sleep((long) (Math.random() * 1000));
 			} catch (InterruptedException e) {
+				System.out.println("throw new IOException(e);");
 				throw new IOException(e);
 			}
 
 			Request request = new Request.Builder().url("http://localhost:8080/observability").build();
 			try (Response response = client.newCall(request).execute()) {
+				System.out.println("return \"Hello, \" + response.body().string() + \"!\\n\";");
 				return "Hello, " + response.body().string() + "!\n";
 			}
 		} finally {

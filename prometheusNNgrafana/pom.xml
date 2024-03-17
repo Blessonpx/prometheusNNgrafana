@@ -37,10 +37,10 @@
 	<artifactId>micrometer-spring-legacy</artifactId>
 	<version>1.0.0-rc.5</version>
 </dependency>
-<dependency>
+<!--<dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_common</artifactId>
-    </dependency>
+    </dependency> -->
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_servlet</artifactId>
@@ -49,13 +49,16 @@
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_hotspot</artifactId>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/io.prometheus/prometheus-metrics-exporter-servlet-jakarta -->
+    
 <dependency>
     <groupId>io.prometheus</groupId>
     <artifactId>prometheus-metrics-exporter-servlet-jakarta</artifactId>
     <version>1.1.0</version>
 </dependency>
-
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
     <dependency>
         <groupId>com.moelholm</groupId>
         <artifactId>prometheus-spring-boot-starter</artifactId>
